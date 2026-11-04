@@ -101,6 +101,15 @@
       "status": "generated",
       "path": "/assets/generated/boss-fight/ego-boss.png"
     },
+    "/assets/generated/boss-fight/player-heroine.png": {
+      "category": "boss-fight",
+      "filename": "player-heroine.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "800x800",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/boss-fight/player-heroine.png"
+    },
     "/assets/generated/boss-fight/victory-deflated-ego.png": {
       "category": "boss-fight",
       "filename": "victory-deflated-ego.png",

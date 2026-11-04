@@ -60,6 +60,7 @@ interface InternalGameState {
     phase: number;
     shootTimer: number;
     quoteTimer: number;
+    lastHitTime?: number;
   };
   projectiles: Projectile[];
   particles: Particle[];
@@ -126,6 +127,18 @@ export const BossFight = () => {
   const animationFrameRef = useRef<number | null>(null);
   const gameLoopRef = useRef<() => void>(() => {});
   const togglePauseRef = useRef<() => void>(() => {});
+  const bossImgRef = useRef<HTMLImageElement | null>(null);
+  const playerImgRef = useRef<HTMLImageElement | null>(null);
+
+  useEffect(() => {
+    const bossImg = new Image();
+    bossImg.src = '/assets/generated/boss-fight/ego-boss.png';
+    bossImgRef.current = bossImg;
+
+    const playerImg = new Image();
+    playerImg.src = '/assets/generated/boss-fight/player-heroine.png';
+    playerImgRef.current = playerImg;
+  }, []);
 
   // Game internal mutable state
   const stateRef = useRef<InternalGameState>({
@@ -309,6 +322,7 @@ export const BossFight = () => {
           const distBoss = Math.hypot(p.x - s.boss.x, p.y - s.boss.y);
           if (distBoss < p.radius + s.boss.radius) {
             retroAudio.playHit();
+            s.boss.lastHitTime = Date.now();
             s.boss.hp = Math.max(0, s.boss.hp - p.damage);
             s.score += p.damage * 10;
             setBossHp(s.boss.hp);
@@ -405,71 +419,101 @@ export const BossFight = () => {
         // Player
         ctx.save();
         ctx.translate(s.player.x, s.player.y);
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = '#ff4081';
-        ctx.fillStyle = '#ff4081';
-        ctx.beginPath();
-        ctx.arc(0, 0, s.player.radius, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.shadowBlur = 0;
+        const playerRadius = s.player.radius;
+        const playerImg = playerImgRef.current;
 
-        ctx.fillStyle = '#ffffff';
-        ctx.beginPath();
-        ctx.arc(4, -4, 3, 0, Math.PI * 2);
-        ctx.arc(4, 4, 3, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = '#000';
-        ctx.beginPath();
-        ctx.arc(5, -4, 1.5, 0, Math.PI * 2);
-        ctx.arc(5, 4, 1.5, 0, Math.PI * 2);
-        ctx.fill();
+        if (playerImg && playerImg.complete && playerImg.naturalWidth > 0) {
+          // Glowing aura
+          ctx.save();
+          ctx.shadowBlur = 14;
+          ctx.shadowColor = '#ff4081';
+          ctx.fillStyle = 'rgba(255, 64, 129, 0.3)';
+          ctx.beginPath();
+          ctx.arc(0, 0, playerRadius + 3, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          // Circular mask
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(0, 0, playerRadius + 3, 0, Math.PI * 2);
+          ctx.clip();
+          const pSize = (playerRadius + 4) * 2;
+          ctx.drawImage(playerImg, -pSize / 2, -pSize / 2, pSize, pSize);
+          ctx.restore();
+
+          // Cute pink border ring
+          ctx.strokeStyle = '#ff80ab';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(0, 0, playerRadius + 3, 0, Math.PI * 2);
+          ctx.stroke();
+        } else {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = '#ff4081';
+          ctx.fillStyle = '#ff4081';
+          ctx.beginPath();
+          ctx.arc(0, 0, playerRadius, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
         ctx.restore();
 
         // Boss
         ctx.save();
         ctx.translate(s.boss.x, s.boss.y);
-        const pulse = Math.sin(Date.now() / 150) * 4;
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = '#9c27b0';
-        ctx.fillStyle = '#6a1b9a';
-        ctx.beginPath();
-        ctx.arc(0, 0, s.boss.radius + pulse, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.shadowBlur = 0;
+        const pulse = Math.sin(Date.now() / 150) * 3;
+        const bossRadius = s.boss.radius + pulse;
+        const bossImg = bossImgRef.current;
+        const isHit = Date.now() - (s.boss.lastHitTime || 0) < 140;
 
-        ctx.fillStyle = '#ff1744';
-        ctx.beginPath();
-        ctx.moveTo(-20, -35);
-        ctx.lineTo(-30, -55);
-        ctx.lineTo(-10, -40);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(20, -35);
-        ctx.lineTo(30, -55);
-        ctx.lineTo(10, -40);
-        ctx.fill();
+        if (bossImg && bossImg.complete && bossImg.naturalWidth > 0) {
+          // Outer boss power aura
+          ctx.save();
+          ctx.shadowBlur = isHit ? 24 : 16;
+          ctx.shadowColor = isHit ? '#ffffff' : '#d500f9';
+          ctx.fillStyle = isHit ? 'rgba(255, 255, 255, 0.4)' : 'rgba(156, 39, 176, 0.25)';
+          ctx.beginPath();
+          ctx.arc(0, 0, bossRadius + 4, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
 
-        ctx.fillStyle = '#ffeb3b';
-        ctx.beginPath();
-        ctx.arc(-14, -6, 5, 0, Math.PI * 2);
-        ctx.arc(14, -6, 5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = '#000000';
-        ctx.beginPath();
-        ctx.arc(-14, -6, 2.5, 0, Math.PI * 2);
-        ctx.arc(14, -6, 2.5, 0, Math.PI * 2);
-        ctx.fill();
+          // Circular mask
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(0, 0, bossRadius + 4, 0, Math.PI * 2);
+          ctx.clip();
+          const bSize = (bossRadius + 6) * 2;
+          ctx.drawImage(bossImg, -bSize / 2, -bSize / 2, bSize, bSize);
 
-        ctx.strokeStyle = '#ffffff';
-        ctx.lineWidth = 2.5;
-        ctx.beginPath();
-        ctx.arc(0, 14, 12, 0.2, Math.PI - 0.2);
-        ctx.stroke();
+          if (isHit) {
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+            ctx.beginPath();
+            ctx.arc(0, 0, bossRadius + 4, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.restore();
 
-        ctx.fillStyle = '#ff80ab';
-        ctx.font = 'bold 10px monospace';
+          // Golden border ring
+          ctx.strokeStyle = isHit ? '#ffffff' : '#ffd700';
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.arc(0, 0, bossRadius + 4, 0, Math.PI * 2);
+          ctx.stroke();
+        } else {
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = '#9c27b0';
+          ctx.fillStyle = '#6a1b9a';
+          ctx.beginPath();
+          ctx.arc(0, 0, bossRadius, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+
+        ctx.fillStyle = '#ffd700';
+        ctx.font = 'bold 11px monospace';
         ctx.textAlign = 'center';
-        ctx.fillText(bossFight.bossName.toUpperCase(), 0, -s.boss.radius - 12);
+        ctx.fillText(bossFight.bossName.toUpperCase(), 0, -bossRadius - 10);
         ctx.restore();
 
         // Projectiles
@@ -655,12 +699,26 @@ export const BossFight = () => {
         {/* Overlay screens: Title, Pause, Victory, Defeat */}
         {gameState === 'title' && (
           <OverlayScreen>
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
-              <img
-                src="/assets/generated/boss-fight/ego-boss.png"
-                alt="Ego Boss Monster"
-                style={{ width: '96px', height: '96px', objectFit: 'contain', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.4))' }}
-              />
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px', marginBottom: '8px' }}>
+              <div style={{ textAlign: 'center' }}>
+                <img
+                  src="/assets/generated/boss-fight/player-heroine.png"
+                  alt="Player Heroine"
+                  style={{ width: '84px', height: '84px', objectFit: 'contain', filter: 'drop-shadow(0 4px 10px rgba(255,64,129,0.5))' }}
+                />
+                <div style={{ fontSize: '10px', color: '#ff80ab', fontWeight: 'bold' }}>HER LOVE</div>
+              </div>
+              <span style={{ fontSize: '22px', fontWeight: 'bold', color: '#ffd700', textShadow: '0 0 8px rgba(255,215,0,0.8)' }}>
+                VS
+              </span>
+              <div style={{ textAlign: 'center' }}>
+                <img
+                  src="/assets/generated/boss-fight/ego-boss.png"
+                  alt="Ego Boss Monster"
+                  style={{ width: '92px', height: '92px', objectFit: 'contain', filter: 'drop-shadow(0 4px 10px rgba(156,39,176,0.6))' }}
+                />
+                <div style={{ fontSize: '10px', color: '#ffd700', fontWeight: 'bold' }}>HIS EGO</div>
+              </div>
             </div>
             <GameTitle>⚔️ BOSS FIGHT: MY EGO ⚔️</GameTitle>
             <SubTitle>Can you deflate his stubborn pride and teach him to listen?</SubTitle>
