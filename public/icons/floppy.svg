@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Floppy disk body -->
+  <rect x="2" y="2" width="28" height="28" fill="#808080" stroke="#000" stroke-width="1"/>
+  <!-- Metal slider -->
+  <rect x="10" y="2" width="12" height="10" fill="#c0c0c0" stroke="#000" stroke-width="1"/>
+  <rect x="14" y="3" width="4" height="8" fill="#404040"/>
+  <!-- Label area -->
+  <rect x="5" y="16" width="22" height="11" fill="#fff" stroke="#000" stroke-width="1"/>
+  <!-- Label lines -->
+  <line x1="7" y1="19" x2="25" y2="19" stroke="#808080" stroke-width="1"/>
+  <line x1="7" y1="22" x2="25" y2="22" stroke="#808080" stroke-width="1"/>
+</svg>

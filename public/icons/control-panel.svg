@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Panel background -->
+  <rect x="2" y="4" width="28" height="24" fill="#c0c0c0" stroke="#000" stroke-width="1"/>
+  <!-- Control knobs/sliders -->
+  <rect x="5" y="8" width="8" height="6" fill="#000080" stroke="#000" stroke-width="1"/>
+  <rect x="5" y="18" width="8" height="6" fill="#008080" stroke="#000" stroke-width="1"/>
+  <rect x="19" y="8" width="8" height="6" fill="#808000" stroke="#000" stroke-width="1"/>
+  <rect x="19" y="18" width="8" height="6" fill="#800080" stroke="#000" stroke-width="1"/>
+  <!-- Small indicators -->
+  <circle cx="9" cy="11" r="2" fill="#fff"/>
+  <circle cx="9" cy="21" r="2" fill="#fff"/>
+  <circle cx="23" cy="11" r="2" fill="#fff"/>
+  <circle cx="23" cy="21" r="2" fill="#fff"/>
+</svg>

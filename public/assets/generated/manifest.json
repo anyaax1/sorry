@@ -1,0 +1,132 @@
+{
+  "generatedAt": "2026-11-04T21:04:00.000Z",
+  "provider": "Google Gemini Nano Banana Image Generation (@google/genai Interactions API)",
+  "assets": {
+    "/assets/generated/desktop/wallpaper.png": {
+      "category": "desktop",
+      "filename": "wallpaper.png",
+      "model": "gemini-3-pro-image",
+      "dimensions": "1920x1080",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/desktop/wallpaper.png"
+    },
+    "/assets/generated/icons/sorry-hotline.png": {
+      "category": "icons",
+      "filename": "sorry-hotline.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "512x512",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/icons/sorry-hotline.png"
+    },
+    "/assets/generated/icons/court.png": {
+      "category": "icons",
+      "filename": "court.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "512x512",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/icons/court.png"
+    },
+    "/assets/generated/icons/vending.png": {
+      "category": "icons",
+      "filename": "vending.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "512x512",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/icons/vending.png"
+    },
+    "/assets/generated/icons/boss-fight.png": {
+      "category": "icons",
+      "filename": "boss-fight.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "512x512",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/icons/boss-fight.png"
+    },
+    "/assets/generated/icons/delivery.png": {
+      "category": "icons",
+      "filename": "delivery.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "512x512",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/icons/delivery.png"
+    },
+    "/assets/generated/hotline/vintage-telephone.png": {
+      "category": "hotline",
+      "filename": "vintage-telephone.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "800x600",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/hotline/vintage-telephone.png"
+    },
+    "/assets/generated/court/gavel.png": {
+      "category": "court",
+      "filename": "gavel.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "800x600",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/court/gavel.png"
+    },
+    "/assets/generated/vending/vending-machine.png": {
+      "category": "vending",
+      "filename": "vending-machine.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "800x800",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/vending/vending-machine.png"
+    },
+    "/assets/generated/vending/snack-mini-sorry.png": {
+      "category": "vending",
+      "filename": "snack-mini-sorry.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "800x800",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/vending/snack-mini-sorry.png"
+    },
+    "/assets/generated/boss-fight/ego-boss.png": {
+      "category": "boss-fight",
+      "filename": "ego-boss.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "800x800",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/boss-fight/ego-boss.png"
+    },
+    "/assets/generated/boss-fight/victory-deflated-ego.png": {
+      "category": "boss-fight",
+      "filename": "victory-deflated-ego.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "800x800",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/boss-fight/victory-deflated-ego.png"
+    },
+    "/assets/generated/delivery/delivery-scooter.png": {
+      "category": "delivery",
+      "filename": "delivery-scooter.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "800x800",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/delivery/delivery-scooter.png"
+    },
+    "/assets/generated/delivery/apology-parcel.png": {
+      "category": "delivery",
+      "filename": "apology-parcel.png",
+      "model": "gemini-3.1-flash-image",
+      "dimensions": "800x800",
+      "format": "png",
+      "status": "generated",
+      "path": "/assets/generated/delivery/apology-parcel.png"
+    }
+  }
+}

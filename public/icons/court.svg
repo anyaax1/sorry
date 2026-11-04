@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Sound block / base -->
+  <rect x="14" y="24" width="16" height="5" rx="1" fill="#8B4513" stroke="#4a250b" stroke-width="1"/>
+  <rect x="16" y="22" width="12" height="3" fill="#A0522D"/>
+  <!-- Gavel handle -->
+  <line x1="6" y1="26" x2="18" y2="10" stroke="#8B4513" stroke-width="3" stroke-linecap="round"/>
+  <line x1="6" y1="26" x2="18" y2="10" stroke="#CD853F" stroke-width="1" stroke-linecap="round"/>
+  <!-- Gavel head -->
+  <g transform="rotate(40 18 10)">
+    <rect x="12" y="5" width="12" height="10" rx="1" fill="#8B4513" stroke="#4a250b" stroke-width="1"/>
+    <!-- Brass ring -->
+    <rect x="16" y="5" width="4" height="10" fill="#FFD700" stroke="#DAA520" stroke-width="0.5"/>
+  </g>
+  <!-- Scales in background -->
+  <circle cx="8" cy="8" r="4" fill="none" stroke="#FFD700" stroke-width="1"/>
+  <line x1="8" y1="4" x2="8" y2="12" stroke="#FFD700" stroke-width="1"/>
+</svg>

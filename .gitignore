@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.DS_Store
+deployment.zip
+playwright-report/
+test-results/
+test-results-pdf/
+
+# Environment variables (keep secrets out of repo)
+.env
+.env.local
+.env.*.local
+
+# Personal content and deployment archives belong outside this repository
+*.pdf
+*.docx
+*persona*.txt
+*persona*.md
+*.zip
+private-content/

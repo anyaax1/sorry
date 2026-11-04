@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Retro delivery van with heart / parcel -->
+  <!-- Van body -->
+  <path d="M 3 11 L 18 11 L 24 16 L 28 16 L 28 24 L 3 24 Z" fill="#2e7d32" stroke="#000" stroke-width="1"/>
+  <!-- Van cab window -->
+  <polygon points="19,13 23,17 19,17" fill="#e0f7fa" stroke="#000" stroke-width="0.5"/>
+  <!-- Front windshield -->
+  <polygon points="24,17 27,17 27,20 24,20" fill="#e0f7fa" stroke="#000" stroke-width="0.5"/>
+  <!-- Parcel icon on van side -->
+  <rect x="7" y="14" width="7" height="6" fill="#d7ccc8" stroke="#8d6e63" stroke-width="0.5"/>
+  <!-- Heart on parcel -->
+  <path d="M 9.5 15.5 A 1 1 0 0 0 8.5 17 Q 9.5 18.5 10.5 19 Q 11.5 18.5 12.5 17 A 1 1 0 0 0 11.5 15.5 Q 10.5 16 9.5 15.5 Z" fill="#e91e63"/>
+  <!-- Wheels -->
+  <circle cx="8" cy="24" r="3.5" fill="#424242" stroke="#000" stroke-width="1"/>
+  <circle cx="8" cy="24" r="1.5" fill="#e0e0e0"/>
+  <circle cx="23" cy="24" r="3.5" fill="#424242" stroke="#000" stroke-width="1"/>
+  <circle cx="23" cy="24" r="1.5" fill="#e0e0e0"/>
+  <!-- Headlight -->
+  <rect x="27.5" y="21" width="1" height="2" fill="#ffeb3b"/>
+</svg>
