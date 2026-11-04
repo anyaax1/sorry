@@ -10,6 +10,18 @@ export function getAssetUrl(path: string): string {
   }
   const base = import.meta.env.BASE_URL || '/';
   const cleanBase = base.endsWith('/') ? base : `${base}/`;
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+
+  let cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  const basePrefixWithoutSlash = cleanBase.startsWith('/') ? cleanBase.slice(1) : cleanBase;
+
+  if (basePrefixWithoutSlash && basePrefixWithoutSlash !== '/') {
+    while (cleanPath.startsWith(basePrefixWithoutSlash)) {
+      cleanPath = cleanPath.slice(basePrefixWithoutSlash.length);
+      if (cleanPath.startsWith('/')) {
+        cleanPath = cleanPath.slice(1);
+      }
+    }
+  }
+
   return `${cleanBase}${cleanPath}`;
 }
