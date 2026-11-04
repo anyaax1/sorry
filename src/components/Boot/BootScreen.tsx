@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
+import { getAssetUrl } from '../../utils/assetPath';
 
 interface BootScreenProps {
   onBootComplete: () => void;
@@ -14,7 +15,7 @@ const BootScreen = ({ onBootComplete, duration = 6000 }: BootScreenProps) => {
 
   return (
     <Container aria-label="Starting Windows 95">
-      <BootImage src="/images/win95-boot.png" alt="Windows 95" />
+      <BootImage src={getAssetUrl('/images/win95-boot.png')} alt="Windows 95" />
     </Container>
   );
 };

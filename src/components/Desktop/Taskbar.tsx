@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Button } from 'react95';
 import type { WindowInfo } from './Desktop';
+import { getAssetUrl } from '../../utils/assetPath';
 
 interface TaskbarProps {
   openWindows: WindowInfo[];
@@ -51,7 +52,7 @@ const Taskbar = ({ openWindows, startMenuOpen, onStartClick, onWindowClick }: Ta
         }}
         active={startMenuOpen}
       >
-        <StartIconImage src="/icons/start.png" alt="" />
+        <StartIconImage src={getAssetUrl('/icons/start.png')} alt="" />
         <StartText>Start</StartText>
       </StartButton>
 
@@ -66,7 +67,7 @@ const Taskbar = ({ openWindows, startMenuOpen, onStartClick, onWindowClick }: Ta
             aria-label={win.title}
             onClick={() => onWindowClick?.(win.id)}
           >
-            {win.icon && <TaskbarWindowIcon src={win.icon} alt="" />}
+            {win.icon && <TaskbarWindowIcon src={getAssetUrl(win.icon)} alt="" />}
             {win.title}
           </WindowButton>
         ))}

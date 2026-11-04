@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { apologyConfig } from '../../../config/apologyConfig';
 import { retroAudio } from '../../../utils/retroAudio';
 import { loadState, saveState } from '../../../utils/storage';
+import { getAssetUrl } from '../../../utils/assetPath';
 
 interface Projectile {
   x: number;
@@ -132,11 +133,11 @@ export const BossFight = () => {
 
   useEffect(() => {
     const bossImg = new Image();
-    bossImg.src = '/assets/generated/boss-fight/ego-boss.png';
+    bossImg.src = getAssetUrl('/assets/generated/boss-fight/ego-boss.png');
     bossImgRef.current = bossImg;
 
     const playerImg = new Image();
-    playerImg.src = '/assets/generated/boss-fight/player-heroine.png';
+    playerImg.src = getAssetUrl('/assets/generated/boss-fight/player-heroine.png');
     playerImgRef.current = playerImg;
   }, []);
 
@@ -702,7 +703,7 @@ export const BossFight = () => {
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px', marginBottom: '8px' }}>
               <div style={{ textAlign: 'center' }}>
                 <img
-                  src="/assets/generated/boss-fight/player-heroine.png"
+                  src={getAssetUrl('/assets/generated/boss-fight/player-heroine.png')}
                   alt="Player Heroine"
                   style={{ width: '84px', height: '84px', objectFit: 'contain', filter: 'drop-shadow(0 4px 10px rgba(255,64,129,0.5))' }}
                 />
@@ -713,7 +714,7 @@ export const BossFight = () => {
               </span>
               <div style={{ textAlign: 'center' }}>
                 <img
-                  src="/assets/generated/boss-fight/ego-boss.png"
+                  src={getAssetUrl('/assets/generated/boss-fight/ego-boss.png')}
                   alt="Ego Boss Monster"
                   style={{ width: '92px', height: '92px', objectFit: 'contain', filter: 'drop-shadow(0 4px 10px rgba(156,39,176,0.6))' }}
                 />
@@ -751,7 +752,7 @@ export const BossFight = () => {
           <OverlayScreen>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
               <img
-                src="/assets/generated/boss-fight/ego-boss.png"
+                src={getAssetUrl('/assets/generated/boss-fight/ego-boss.png')}
                 alt="Smug Ego Monster"
                 style={{ width: '90px', height: '90px', objectFit: 'contain', filter: 'drop-shadow(0 4px 10px rgba(255,0,0,0.4))' }}
               />
@@ -771,7 +772,7 @@ export const BossFight = () => {
             <HumbleBoyfriendBox>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '6px' }}>
                 <img
-                  src="/assets/generated/boss-fight/victory-deflated-ego.png"
+                  src={getAssetUrl('/assets/generated/boss-fight/victory-deflated-ego.png')}
                   alt="Deflated Ego and Apology Flowers"
                   style={{ width: '110px', height: '110px', objectFit: 'contain', filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' }}
                 />

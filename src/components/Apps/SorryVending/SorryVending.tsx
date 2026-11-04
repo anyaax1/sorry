@@ -3,6 +3,7 @@ import styled, { keyframes, css } from 'styled-components';
 import { apologyConfig } from '../../../config/apologyConfig';
 import { retroAudio } from '../../../utils/retroAudio';
 import { loadState, saveState } from '../../../utils/storage';
+import { getAssetUrl } from '../../../utils/assetPath';
 
 interface VendingItem {
   id: string;
@@ -160,7 +161,7 @@ export const SorryVending = () => {
       <HeaderBar>
         <TitleText>
           <img
-            src="/assets/generated/vending/vending-machine.png"
+            src={getAssetUrl('/assets/generated/vending/vending-machine.png')}
             alt="Vending Machine"
             style={{ width: '20px', height: '20px', objectFit: 'contain', verticalAlign: 'middle', marginRight: '6px' }}
           />
@@ -360,7 +361,7 @@ export const SorryVending = () => {
               <ReceiptPaper>
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}>
                   <img
-                    src="/assets/generated/vending/vending-machine.png"
+                    src={getAssetUrl('/assets/generated/vending/vending-machine.png')}
                     alt="Vending Machine"
                     style={{ width: '42px', height: '42px', objectFit: 'contain' }}
                   />
@@ -447,7 +448,7 @@ export const SorryVending = () => {
             <ModalBody>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
                 <img
-                  src="/assets/generated/vending/snack-mini-sorry.png"
+                  src={getAssetUrl('/assets/generated/vending/snack-mini-sorry.png')}
                   alt="Dispensed Keepsake"
                   style={{ width: '84px', height: '84px', objectFit: 'contain', filter: 'drop-shadow(0 3px 6px rgba(0,0,0,0.3))' }}
                 />

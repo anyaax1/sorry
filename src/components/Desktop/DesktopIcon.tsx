@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { getAssetUrl } from '../../utils/assetPath';
 
 interface DesktopIconProps {
   id: string;
@@ -42,7 +43,7 @@ const DesktopIcon = ({ id, icon, label, onDoubleClick }: DesktopIconProps) => {
       $selected={isSelected}
     >
       <IconWrapper $selected={isSelected}>
-        <IconImage src={icon} alt={label} draggable={false} />
+        <IconImage src={getAssetUrl(icon)} alt={label} draggable={false} />
       </IconWrapper>
       <Label $selected={isSelected}>{label}</Label>
     </Container>

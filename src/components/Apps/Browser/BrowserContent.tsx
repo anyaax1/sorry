@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import HomePage from './HomePage';
+import { getAssetUrl } from '../../../utils/assetPath';
 
 // Real Windows 98 IE toolbar icons
 const ICONS = {
   ie: 'https://win98icons.alexmeub.com/icons/png/msie1-2.png',
-  ieThrobberLoading: '/icons/ie-throbber-tenor.gif',   // Animated globe when loading
-  ieThrobberIdle: '/icons/ie-throbber-static.png',    // First frame of animation (static)
+  ieThrobberLoading: getAssetUrl('/icons/ie-throbber-tenor.gif'),   // Animated globe when loading
+  ieThrobberIdle: getAssetUrl('/icons/ie-throbber-static.png'),    // First frame of animation (static)
   page: 'https://win98icons.alexmeub.com/icons/png/html-3.png',
   search: 'https://win98icons.alexmeub.com/icons/png/search_web-0.png',
   history: 'https://win98icons.alexmeub.com/icons/png/history-0.png',

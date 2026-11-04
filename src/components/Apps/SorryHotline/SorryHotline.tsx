@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import { apologyConfig } from '../../../config/apologyConfig';
 import { retroAudio } from '../../../utils/retroAudio';
+import { getAssetUrl } from '../../../utils/assetPath';
 
 type CallState = 'idle' | 'dialing' | 'ringing' | 'connected' | 'ended' | 'busy';
 
@@ -97,7 +98,7 @@ export const SorryHotline = ({ onCallStateChange }: SorryHotlineProps) => {
           audioRef.current = new Audio();
         }
         const audio = audioRef.current;
-        audio.src = targetAudio;
+        audio.src = getAssetUrl(targetAudio);
         audio.volume = audioVolume;
 
         audio.onloadedmetadata = () => {
@@ -293,7 +294,7 @@ export const SorryHotline = ({ onCallStateChange }: SorryHotlineProps) => {
       <HeaderBar>
         <HotlineLogo>
           <img
-            src="/assets/generated/hotline/vintage-telephone.png"
+            src={getAssetUrl('/assets/generated/hotline/vintage-telephone.png')}
             alt="Hotline phone"
             style={{ width: '24px', height: '24px', objectFit: 'contain', verticalAlign: 'middle', marginRight: '6px' }}
           />
@@ -307,7 +308,7 @@ export const SorryHotline = ({ onCallStateChange }: SorryHotlineProps) => {
         <PhoneChassis>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '6px' }}>
             <img
-              src="/assets/generated/hotline/vintage-telephone.png"
+              src={getAssetUrl('/assets/generated/hotline/vintage-telephone.png')}
               alt="Vintage telephone"
               style={{ width: '84px', height: '60px', objectFit: 'contain', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.25))' }}
             />

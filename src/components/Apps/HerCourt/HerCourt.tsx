@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { apologyConfig } from '../../../config/apologyConfig';
 import { retroAudio } from '../../../utils/retroAudio';
 import { loadState, saveState } from '../../../utils/storage';
+import { getAssetUrl } from '../../../utils/assetPath';
 
 type CourtTab = 'case' | 'charges' | 'evidence' | 'apology' | 'verdict' | 'judgment';
 
@@ -96,7 +97,7 @@ export const HerCourt = () => {
         <HeaderTop>
           <CourtTitle>
             <img
-              src="/assets/generated/court/gavel.png"
+              src={getAssetUrl('/assets/generated/court/gavel.png')}
               alt="Court emblem"
               style={{ width: '22px', height: '22px', objectFit: 'contain', verticalAlign: 'middle', marginRight: '8px' }}
             />
@@ -109,7 +110,7 @@ export const HerCourt = () => {
             title="Bang the gavel!"
           >
             <img
-              src="/assets/generated/court/gavel.png"
+              src={getAssetUrl('/assets/generated/court/gavel.png')}
               alt="Gavel"
               style={{ width: '18px', height: '18px', objectFit: 'contain', verticalAlign: 'middle', marginRight: '5px' }}
             />
@@ -407,7 +408,7 @@ export const HerCourt = () => {
             <JudgmentDocument>
               <DocHeader>
                 <img
-                  src="/assets/generated/court/gavel.png"
+                  src={getAssetUrl('/assets/generated/court/gavel.png')}
                   alt="Official Seal Gavel"
                   style={{ width: '48px', height: '48px', objectFit: 'contain', margin: '0 auto 6px auto', display: 'block' }}
                 />

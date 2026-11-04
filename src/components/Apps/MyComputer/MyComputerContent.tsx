@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { getAssetUrl } from '../../../utils/assetPath';
 
 interface FileIconProps {
   id: string;
@@ -28,12 +29,12 @@ const MyComputerContent = () => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const items = [
-    { id: 'floppy', icon: '/icons/floppy.svg', label: '3½ Floppy (A:)' },
-    { id: 'c-drive', icon: '/icons/hard-drive.png', label: '(C:)' },
-    { id: 'd-drive', icon: '/icons/cd-drive.png', label: 'New (D:)' },
-    { id: 'control-panel', icon: '/icons/control-panel.svg', label: 'Control Panel' },
-    { id: 'printers', icon: '/icons/printer.png', label: 'Printers' },
-    { id: 'dialup', icon: '/icons/dialup.png', label: 'Dial-Up Networking' },
+    { id: 'floppy', icon: getAssetUrl('/icons/floppy.svg'), label: '3½ Floppy (A:)' },
+    { id: 'c-drive', icon: getAssetUrl('/icons/hard-drive.png'), label: '(C:)' },
+    { id: 'd-drive', icon: getAssetUrl('/icons/cd-drive.png'), label: 'New (D:)' },
+    { id: 'control-panel', icon: getAssetUrl('/icons/control-panel.svg'), label: 'Control Panel' },
+    { id: 'printers', icon: getAssetUrl('/icons/printer.png'), label: 'Printers' },
+    { id: 'dialup', icon: getAssetUrl('/icons/dialup.png'), label: 'Dial-Up Networking' },
   ];
 
   const handleSelect = (id: string) => {

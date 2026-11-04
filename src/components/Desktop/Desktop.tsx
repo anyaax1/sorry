@@ -12,6 +12,7 @@ import HerCourt from '../Apps/HerCourt/HerCourt';
 import SorryVending from '../Apps/SorryVending/SorryVending';
 import BossFight from '../Apps/BossFight/BossFight';
 import SorryDelivery from '../Apps/SorryDelivery/SorryDelivery';
+import { getAssetUrl } from '../../utils/assetPath';
 
 export interface WindowInfo {
   id: string;
@@ -23,15 +24,15 @@ export interface WindowInfo {
 }
 
 const iconToPath: Record<string, string> = {
-  'my-computer': '/icons/my-computer.png',
-  'recycle-bin': '/icons/recycle-bin.png',
-  'minesweeper': '/icons/minesweeper.png',
-  'homepage': '/icons/internet.png',
-  'sorry-hotline': '/assets/generated/icons/sorry-hotline.png',
-  'court-of-her-name': '/assets/generated/icons/court.png',
-  'sorry-vending-machine': '/assets/generated/icons/vending.png',
-  'boss-fight-ego': '/assets/generated/icons/boss-fight.png',
-  'sorry-delivery': '/assets/generated/icons/delivery.png',
+  'my-computer': getAssetUrl('/icons/my-computer.png'),
+  'recycle-bin': getAssetUrl('/icons/recycle-bin.png'),
+  'minesweeper': getAssetUrl('/icons/minesweeper.png'),
+  'homepage': getAssetUrl('/icons/internet.png'),
+  'sorry-hotline': getAssetUrl('/assets/generated/icons/sorry-hotline.png'),
+  'court-of-her-name': getAssetUrl('/assets/generated/icons/court.png'),
+  'sorry-vending-machine': getAssetUrl('/assets/generated/icons/vending.png'),
+  'boss-fight-ego': getAssetUrl('/assets/generated/icons/boss-fight.png'),
+  'sorry-delivery': getAssetUrl('/assets/generated/icons/delivery.png'),
 };
 
 function activateTopWindow(windows: WindowInfo[]) {
@@ -106,47 +107,51 @@ export const Desktop = () => {
   };
 
   return (
-    <Container onClick={handleDesktopClick} aria-label="Windows 95 desktop">
+    <Container
+      onClick={handleDesktopClick}
+      aria-label="Windows 95 desktop"
+      style={{ backgroundImage: `url("${getAssetUrl('/assets/generated/desktop/wallpaper.png')}")` }}
+    >
       <IconsArea role="group" aria-label="Desktop icons">
         <DesktopIcon
           id="my-computer"
-          icon="/icons/my-computer.png"
+          icon={getAssetUrl('/icons/my-computer.png')}
           label="My Computer"
           onDoubleClick={handleIconDoubleClick}
         />
         <DesktopIcon
           id="recycle-bin"
-          icon="/icons/recycle-bin.png"
+          icon={getAssetUrl('/icons/recycle-bin.png')}
           label="Recycle Bin"
           onDoubleClick={handleIconDoubleClick}
         />
         <DesktopIcon
           id="sorry-hotline"
-          icon="/assets/generated/icons/sorry-hotline.png"
+          icon={getAssetUrl('/assets/generated/icons/sorry-hotline.png')}
           label="Sorry Hotline"
           onDoubleClick={handleIconDoubleClick}
         />
         <DesktopIcon
           id="court-of-her-name"
-          icon="/assets/generated/icons/court.png"
+          icon={getAssetUrl('/assets/generated/icons/court.png')}
           label="The Court of Her Name"
           onDoubleClick={handleIconDoubleClick}
         />
         <DesktopIcon
           id="sorry-vending-machine"
-          icon="/assets/generated/icons/vending.png"
+          icon={getAssetUrl('/assets/generated/icons/vending.png')}
           label="Sorry Vending Machine"
           onDoubleClick={handleIconDoubleClick}
         />
         <DesktopIcon
           id="boss-fight-ego"
-          icon="/assets/generated/icons/boss-fight.png"
+          icon={getAssetUrl('/assets/generated/icons/boss-fight.png')}
           label="Boss Fight: My Ego"
           onDoubleClick={handleIconDoubleClick}
         />
         <DesktopIcon
           id="sorry-delivery"
-          icon="/assets/generated/icons/delivery.png"
+          icon={getAssetUrl('/assets/generated/icons/delivery.png')}
           label="Sorry Is Out for Delivery"
           onDoubleClick={handleIconDoubleClick}
         />
@@ -257,7 +262,6 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   background-color: #008080;
-  background-image: url('/assets/generated/desktop/wallpaper.png');
   background-size: cover;
   background-position: center;
   position: relative;

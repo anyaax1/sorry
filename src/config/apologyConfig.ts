@@ -1,6 +1,8 @@
 // Central Apology Configuration for Windows 95: The Sorry Computer
 // All personalized copy, options, charges, products, dialogues, and settings reside here.
 
+import { getAssetUrl } from '../utils/assetPath';
+
 export interface ApologyConfig {
   couple: {
     girlfriendName: string;
@@ -116,7 +118,7 @@ export const apologyConfig: ApologyConfig = {
     phoneNumber: '1-800-IM-SORRY',
     greetingText:
       'Welcome to the 24/7 Apology Hotline. All operators are currently on standby admitting their mistakes. Please listen carefully as our menu options have changed to acknowledge that you were 100% right.',
-    defaultAudioUrl: '/sounds/apology-voice.mp3',
+    defaultAudioUrl: getAssetUrl('/sounds/apology-voice.mp3'),
     menuOptions: [
       {
         key: '1',

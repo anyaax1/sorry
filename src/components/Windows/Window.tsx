@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { fitWindow, resizeWindow, TASKBAR_HEIGHT } from './geometry';
+import { getAssetUrl } from '../../utils/assetPath';
 
 export interface WindowProps {
   id: string;
@@ -152,7 +153,7 @@ const Window = ({
       {/* Title Bar */}
       <TitleBar $isActive={isActive} onPointerDown={handleHeaderPointerDown} onDoubleClick={handleMaximize}>
         <TitleBarLeft>
-          {icon && <TitleBarIcon src={icon} alt="" />}
+          {icon && <TitleBarIcon src={getAssetUrl(icon)} alt="" />}
           <TitleBarText>{title}</TitleBarText>
         </TitleBarLeft>
         <TitleBarButtons onDoubleClick={e => e.stopPropagation()}>

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { apologyConfig } from '../../../config/apologyConfig';
 import { retroAudio } from '../../../utils/retroAudio';
 import { loadState, saveState } from '../../../utils/storage';
+import { getAssetUrl } from '../../../utils/assetPath';
 
 interface SavedDeliveryState {
   currentStep: number;
@@ -267,7 +268,7 @@ export const SorryDelivery = () => {
             <InTransitBox>
               <VanGraphic>
                 <img
-                  src="/assets/generated/delivery/delivery-scooter.png"
+                  src={getAssetUrl('/assets/generated/delivery/delivery-scooter.png')}
                   alt="Delivery in transit"
                   style={{ width: '130px', height: '130px', objectFit: 'contain', filter: 'drop-shadow(0 3px 6px rgba(0,0,0,0.25))' }}
                 />
@@ -285,7 +286,7 @@ export const SorryDelivery = () => {
                 <ClosedParcelPrompt onClick={() => setIsPackageOpened(true)}>
                   <ParcelIcon>
                     <img
-                      src="/assets/generated/delivery/apology-parcel.png"
+                      src={getAssetUrl('/assets/generated/delivery/apology-parcel.png')}
                       alt="Apology Parcel"
                       style={{ width: '140px', height: '140px', objectFit: 'contain', filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' }}
                     />
