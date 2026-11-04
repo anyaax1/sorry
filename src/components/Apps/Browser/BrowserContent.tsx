@@ -15,7 +15,7 @@ const ICONS = {
 };
 
 const BrowserContent = () => {
-  const HOME_URL = 'http://fonchi.ridao.ar/';
+  const HOME_URL = 'http://sorry-computer.local/welcome.html';
   const [isLoading, setIsLoading] = useState(true);
   const [statusText, setStatusText] = useState('Opening page...');
   const refreshTimer = useRef<ReturnType<typeof setTimeout> | null>(null);

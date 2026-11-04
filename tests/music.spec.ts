@@ -1,4 +1,4 @@
-import { test, expect, boot, openApp } from './fixtures';
+import { test, expect, boot } from './fixtures';
 
 test('music advances from the current track, follows mute and disposes its player', async ({ page }) => {
   await page.addInitScript(() => {
@@ -28,7 +28,13 @@ test('music advances from the current track, follows mute and disposes its playe
     host.YT = { Player, PlayerState: { ENDED: 0, PLAYING: 1, PAUSED: 2 } };
   });
   await boot(page);
-  const dialog = await openApp(page, "Fonchi's Homepage");
+  const start = page.getByRole('button', { name: 'Start', exact: true });
+  await start.click();
+  await page.getByRole('menuitem', { name: 'Programs', exact: true }).hover();
+  const submenu = page.getByRole('menu', { name: 'Programs', exact: true });
+  await submenu.getByRole('menuitem', { name: 'Apology Cyber Portal', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: 'Apology Cyber Portal', exact: true });
+  await expect(dialog).toBeVisible();
   await page.clock.runFor(2100);
   const next = dialog.getByTitle('Next', { exact: true });
   await next.click();

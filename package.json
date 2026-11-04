@@ -1,7 +1,7 @@
 {
-  "name": "win-site",
+  "name": "win95-sorry-computer",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,6 @@
     "test": "playwright test",
     "test:browser": "playwright test",
     "test:unit": "playwright test --project=unit",
-    "test:live": "node scripts/verify-live.mjs",
     "typecheck": "tsc -b && tsc -p tsconfig.test.json",
     "check:privacy": "node scripts/check-repository.mjs"
   },

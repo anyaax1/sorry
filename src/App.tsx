@@ -6,7 +6,6 @@ import { createGlobalStyle } from 'styled-components';
 
 import BootScreen from './components/Boot/BootScreen';
 import Desktop from './components/Desktop/Desktop';
-import { useSessionTracking } from './hooks/useSessionTracking';
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
@@ -55,9 +54,6 @@ type AppState = 'booting' | 'desktop';
 
 function App() {
   const [appState, setAppState] = useState<AppState>('booting');
-
-  // Track session duration and log visits
-  useSessionTracking();
 
   const handleBootComplete = useCallback(() => {
     setAppState('desktop');

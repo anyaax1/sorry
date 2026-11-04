@@ -1,23 +1,17 @@
 import { useState, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Button } from 'react95';
 import type { WindowInfo } from './Desktop';
-import { logClick } from '../../services/analyticsService';
-
-type ICQStatus = 'connecting' | 'online';
 
 interface TaskbarProps {
   openWindows: WindowInfo[];
   startMenuOpen: boolean;
   onStartClick: () => void;
   onWindowClick?: (id: string) => void;
-  onICQClick?: () => void;
-  icqUnreadCount?: number;
 }
 
-const Taskbar = ({ openWindows, startMenuOpen, onStartClick, onWindowClick, onICQClick, icqUnreadCount = 0 }: TaskbarProps) => {
+const Taskbar = ({ openWindows, startMenuOpen, onStartClick, onWindowClick }: TaskbarProps) => {
   const [time, setTime] = useState(new Date());
-  const [icqStatus, setIcqStatus] = useState<ICQStatus>('connecting');
   const [isMuted, setIsMuted] = useState(() => {
     return localStorage.getItem('win95-muted') === 'true';
   });
@@ -26,7 +20,6 @@ const Taskbar = ({ openWindows, startMenuOpen, onStartClick, onWindowClick, onIC
     const newMuted = !isMuted;
     setIsMuted(newMuted);
     localStorage.setItem('win95-muted', String(newMuted));
-    logClick('taskbar', newMuted ? 'mute' : 'unmute');
     // Dispatch event so other components can react
     window.dispatchEvent(new CustomEvent('win95-mute-change', { detail: newMuted }));
   };
@@ -36,14 +29,6 @@ const Taskbar = ({ openWindows, startMenuOpen, onStartClick, onWindowClick, onIC
       setTime(new Date());
     }, 1000);
     return () => clearInterval(timer);
-  }, []);
-
-  // ICQ connecting animation - becomes online after 3 seconds
-  useEffect(() => {
-    const connectTimer = setTimeout(() => {
-      setIcqStatus('online');
-    }, 3000);
-    return () => clearTimeout(connectTimer);
   }, []);
 
   const formatTime = (date: Date) => {
@@ -62,7 +47,6 @@ const Taskbar = ({ openWindows, startMenuOpen, onStartClick, onWindowClick, onIC
         aria-expanded={startMenuOpen}
         onClick={(e: React.MouseEvent) => {
           e.stopPropagation();
-          logClick('taskbar', 'start-button');
           onStartClick();
         }}
         active={startMenuOpen}
@@ -89,17 +73,9 @@ const Taskbar = ({ openWindows, startMenuOpen, onStartClick, onWindowClick, onIC
       </WindowButtons>
 
       <SystemTray>
-        <ICQIcon
-          $status={icqStatus}
-          title={icqStatus === 'online' ? 'ICQ - Online (Click to chat)' : 'ICQ - Connecting...'}
-          onClick={() => {
-            logClick('taskbar', 'icq-icon');
-            onICQClick?.();
-          }}
-        >
-          <ICQImage src="/icons/icq-flower.svg" alt="ICQ" $status={icqStatus} />
-          {icqUnreadCount > 0 && <ICQBadge>{icqUnreadCount}</ICQBadge>}
-        </ICQIcon>
+        <PersonalEditionBadge title="Windows 95 — Personal Edition">
+          💝
+        </PersonalEditionBadge>
         <SpeakerIcon onClick={toggleMute} title={isMuted ? 'Click to unmute' : 'Click to mute'}>
           {isMuted ? '🔇' : '🔊'}
         </SpeakerIcon>
@@ -214,52 +190,10 @@ const SystemTray = styled.div`
   height: 26px;
 `;
 
-const blink = keyframes`
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0.3; }
-`;
-
-const ICQIcon = styled.button<{ $status: ICQStatus }>`
-  position: relative;
-  background: transparent;
-  border: 0;
-  padding: 0;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-`;
-
-const ICQImage = styled.img<{ $status: ICQStatus }>`
-  width: 18px;
-  height: 18px;
-  animation: ${props => props.$status === 'connecting' ? blink : 'none'} 0.5s ease-in-out infinite;
-  filter: ${props => props.$status === 'connecting' ? 'grayscale(50%)' : 'none'};
-`;
-
-const pulse = keyframes`
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-`;
-
-const ICQBadge = styled.span`
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  min-width: 14px;
-  height: 14px;
-  padding: 0 3px;
-  background: #ff0000;
-  color: #fff;
-  border-radius: 7px;
-  font-size: 9px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: ${pulse} 1s infinite;
+const PersonalEditionBadge = styled.span`
+  font-size: 14px;
+  cursor: default;
+  user-select: none;
 `;
 
 const SpeakerIcon = styled.button`

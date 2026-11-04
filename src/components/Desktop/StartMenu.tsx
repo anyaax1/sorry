@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { logClick } from '../../services/analyticsService';
 
 interface StartMenuProps {
   isOpen: boolean;
@@ -33,17 +32,14 @@ const StartMenu = ({ isOpen, onClose, onOpenApp }: StartMenuProps) => {
     { id: 'sorry-vending-machine', title: 'Sorry Vending Machine', icon: '🍫' },
     { id: 'boss-fight-ego', title: 'Boss Fight: My Ego', icon: '⚔️' },
     { id: 'sorry-delivery', title: 'Sorry Is Out for Delivery', icon: '📦' },
-    { id: 'icq', title: 'ICQ', icon: '🌸' },
-    { id: 'homepage', title: "Fonchi's Homepage", icon: '🌐' },
+    { id: 'homepage', title: 'Apology Cyber Portal', icon: '🌐' },
     { id: 'my-computer', title: 'My Computer', icon: '💻' },
-    { id: 'cv-doc', title: 'CV.doc', icon: '📄' },
     { id: 'minesweeper', title: 'Minesweeper', icon: '💣' },
   ];
 
   const handleItemClick = (item: MenuItem) => {
-    logClick('start-menu', item.id);
     if (item.id === 'shutdown') {
-      window.location.assign('https://alfonso.ridao.ar');
+      handleShutdown();
       return;
     }
     onOpenApp(item.id, item.title);
@@ -51,8 +47,7 @@ const StartMenu = ({ isOpen, onClose, onOpenApp }: StartMenuProps) => {
   };
 
   const handleShutdown = () => {
-    logClick('start-menu', 'shutdown');
-    window.location.assign('https://alfonso.ridao.ar');
+    window.location.reload();
   };
 
   return (
@@ -101,7 +96,7 @@ const StartMenu = ({ isOpen, onClose, onOpenApp }: StartMenuProps) => {
         </MenuItemRow>
 
         {/* Documents */}
-        <MenuItemRow role="menuitem" tabIndex={0} onClick={() => handleItemClick({ id: 'cv-doc', title: 'CV.doc', icon: '📄' })}>
+        <MenuItemRow $disabled>
           <MenuIcon>📂</MenuIcon>
           <MenuLabel>Documents</MenuLabel>
         </MenuItemRow>
@@ -134,10 +129,10 @@ const StartMenu = ({ isOpen, onClose, onOpenApp }: StartMenuProps) => {
 
         <Divider />
 
-        {/* Shut Down */}
+        {/* Restart / Shut Down */}
         <MenuItemRow role="menuitem" tabIndex={0} onClick={handleShutdown}>
           <MenuIcon>🔌</MenuIcon>
-          <MenuLabel>Shut Down...</MenuLabel>
+          <MenuLabel>Restart System...</MenuLabel>
         </MenuItemRow>
       </MenuItems>
     </MenuContainer>
